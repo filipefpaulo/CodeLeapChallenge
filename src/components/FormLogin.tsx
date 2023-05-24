@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 
 import { useDispatch } from '../hooks/useRedux';
 import { setUsername } from '../redux/features/username.slice';
+import { Button } from './Button';
+import { Input } from './Input';
 
 export function FormLogin() {
   const [name, setName] = useState('');
@@ -19,20 +21,16 @@ export function FormLogin() {
 
   return (
     <form className="flex flex-col" onSubmit={submitName}>
-      <input
+      <Input
         type="text"
-        className="mt-2 mb-4 border-[1px] border-zinc-500 px-4 py-2 rounded-lg"
         value={name}
         onChange={({ target }) => setName(target.value)}
         placeholder="John Doe"
+        labelName="Please enter your username"
       />
-      <button
-        type="submit"
-        className="px-[31px] py-[6px] w-fit bg-defaultBlue rounded-lg font-bold text-zinc-50 self-end disabled:bg-zinc-400 disabled:cursor-not-allowed"
-        disabled={!name}
-      >
+      <Button type="submit" className="self-end" disabled={!name}>
         ENTER
-      </button>
+      </Button>
     </form>
   );
 }

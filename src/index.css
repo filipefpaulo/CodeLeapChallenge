@@ -8,3 +8,7 @@
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
 }
+
+body {
+  @apply bg-zinc-300;
+}
