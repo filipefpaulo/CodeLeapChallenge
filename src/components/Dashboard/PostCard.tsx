@@ -8,8 +8,8 @@ interface PostCardProps {
 
 export function PostCard({ post }: PostCardProps) {
   return (
-    <Box className="mt-6 p-0">
-      <h1 className="bg-defaultBlue rounded-t-xl p-6 text-[22px] text-zinc-50 font-bold">
+    <Box className="mt-6 p-[0px]">
+      <h1 className="bg-defaultBlue rounded-t-xl p-6 truncate text-[22px] text-zinc-50 font-bold">
         {post.title}
       </h1>
       <div className="text-lg p-6">
@@ -17,7 +17,7 @@ export function PostCard({ post }: PostCardProps) {
           <p className="font-bold  mb-4">@{post.username}</p>
           <p>{dateDiff(post.created_datetime)}</p>
         </div>
-        <p>{post.content}</p>
+        <p className="text-justify break-words hyphens-auto">{post.content}</p>
       </div>
     </Box>
   );

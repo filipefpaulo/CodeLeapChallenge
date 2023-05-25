@@ -1,15 +1,25 @@
 export function dateDiff(date: string) {
-  const now = new Date();
-  const diff = now - new Date(date);
+  const providedDate = new Date(date).getTime();
+  const currentDate = new Date().getTime();
+  const timeIntervals = [
+    { unit: 'second', limit: 60, divisor: 60 },
+    { unit: 'minute', limit: 60, divisor: 60 },
+    { unit: 'hour', limit: 24, divisor: 24 },
+    { unit: 'day', limit: 30, divisor: 30 },
+    { unit: 'month', limit: 12, divisor: 12 },
+    { unit: 'year', limit: Infinity, divisor: 12 },
+  ];
 
-  const hours = Math.floor(diff / (1000 * 60 * 60));
-  const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  let timeDifference = (currentDate - providedDate) / 1000;
 
-  if (hours > 1) {
-    return `${hours} hours  ago`;
+  for (const interval of timeIntervals) {
+    if (timeDifference < interval.limit) {
+      return `${Math.floor(timeDifference)} ${interval.unit}${
+        timeDifference < 2 ? '' : 's'
+      } ago`;
+    }
+    timeDifference /= interval.divisor;
   }
-  if (minutes > 0) {
-    return `${minutes} minutes ago`;
-  }
-  return 'Few seconds ago';
+
+  return 'More than a year ago';
 }
