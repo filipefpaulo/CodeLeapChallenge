@@ -17,8 +17,8 @@ const initialState: PostState = {
   nextPage: null,
 };
 
-export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
-  const posts = await getPosts();
+export const fetchPosts = createAsyncThunk('posts/fetchPosts', async (offset: number) => {
+  const posts = await getPosts(offset);
   return posts;
 });
 
@@ -34,7 +34,7 @@ export const postsSlice = createSlice({
       })
       .addCase(fetchPosts.fulfilled, (state, action) => {
         state.loading = false;
-        state.posts = action.payload.results;
+        state.posts = [...(state.posts || []), ...action.payload.results];
         state.nextPage = action.payload.next;
       })
       .addCase(fetchPosts.rejected, (state, action) => {

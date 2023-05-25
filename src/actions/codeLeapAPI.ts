@@ -11,9 +11,9 @@ export async function createPost({ title, username, content }: Partial<PostInter
     .catch((error) => error);
 }
 
-export async function getPosts() {
+export async function getPosts(offset = 0) {
   return codeLeapAPI
-    .get('')
+    .get(`?offset=${offset}`)
     .then((response) => response.data)
     .catch((error) => error);
 }
