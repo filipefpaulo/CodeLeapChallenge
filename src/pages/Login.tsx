@@ -6,8 +6,6 @@ import { useSelector } from '../hooks/useRedux';
 
 export function Login() {
   const { username } = useSelector((state) => state.username);
-  console.log(username);
-
   if (username) return <Navigate to="/" />;
 
   return (
