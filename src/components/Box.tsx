@@ -9,7 +9,7 @@ interface BoxProps {
 export function Box({ children, className }: BoxProps) {
   return (
     <div
-      className={cx('p-6 rounded-2xl border-[1px] border-zinc-400 bg-white', className)}
+      className={cx('rounded-2xl border-[1px] border-zinc-400 bg-white p-6', className)}
     >
       {children}
     </div>
