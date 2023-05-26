@@ -18,7 +18,7 @@ export function Input({
       <input
         id={labelName}
         className={cx(
-          'mt-2 mb-4 border-[1px] border-zinc-500 px-4 py-2 rounded-lg w-full',
+          'mb-4 mt-2 w-full rounded-lg border-[1px] border-zinc-500 px-4 py-2',
           className,
         )}
         {...inputElements}
