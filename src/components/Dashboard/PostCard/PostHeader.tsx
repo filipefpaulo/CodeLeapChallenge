@@ -16,10 +16,18 @@ export function PostHeader({ post }: PostCardProps) {
       </Hero>
       {post.username === username && (
         <div className="ml-6 flex gap-8">
-          <button onClick={() => dispatch(openDeleteModal())}>
+          <button
+            onClick={() =>
+              dispatch(openDeleteModal({ postId: post.id, postUsername: post.username }))
+            }
+          >
             <img src={Trash} alt="Trash symbol to delete the post" />
           </button>
-          <button onClick={() => dispatch(openEditModal())}>
+          <button
+            onClick={() =>
+              dispatch(openEditModal({ postId: post.id, postUsername: post.username }))
+            }
+          >
             <img src={Pen} alt="Pen symbol to edit the post" />
           </button>
         </div>

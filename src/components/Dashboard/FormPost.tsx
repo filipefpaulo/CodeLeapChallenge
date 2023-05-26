@@ -3,15 +3,16 @@ import { useNavigate } from 'react-router-dom';
 
 import { createPost } from '../../actions/codeLeapAPI';
 import { useSelector } from '../../hooks/useRedux';
+import { PostInterface } from '../../interfaces/post.interface';
 import { Box } from '../Box';
 import { Button } from '../Button';
 import { Hero } from '../Hero';
-import { Input } from '../Input';
+import { PostInputs } from '../Input/PostInputs';
 
 export function FormPost() {
   const { username } = useSelector((state) => state.username);
   const navigate = useNavigate();
-  const [post, setPost] = useState({ title: '', content: '' });
+  const [post, setPost] = useState<Partial<PostInterface>>({});
 
   const hasUsername = !!username;
 
@@ -28,21 +29,7 @@ export function FormPost() {
         <Hero colorMode="dark" className="mb-6">
           {"What's on your mind?"}
         </Hero>
-        <Input
-          type="text"
-          labelName="Title"
-          placeholder="Hello world"
-          value={post.title}
-          onChange={({ target }) => setPost({ ...post, title: target.value })}
-        />
-        <Input
-          type="text"
-          labelName="Content"
-          placeholder="Content here"
-          className="pb-11"
-          value={post.content}
-          onChange={({ target }) => setPost({ ...post, content: target.value })}
-        />
+        <PostInputs post={post} setPost={setPost} />
         <Button
           type="submit"
           className="self-end"

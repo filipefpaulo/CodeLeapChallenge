@@ -1,21 +1,30 @@
-import { useDispatch } from '../../../hooks/useRedux';
+import { useState } from 'react';
+
+import { editPost } from '../../../actions/codeLeapAPI';
+import { useDispatch, useSelector } from '../../../hooks/useRedux';
+import { PostInterface } from '../../../interfaces/post.interface';
 import { closeModal } from '../../../redux/features/modal.slice';
 import { Button } from '../../Button';
 import { Hero } from '../../Hero';
-import { usePostInput } from '../../Input/PostInput';
+import { PostInputs } from '../../Input/PostInputs';
 
 export function EditPost() {
-  const dispatch = useDispatch();
-  const { post, PostInputs } = usePostInput();
+  const { post: oldPost } = useSelector((state) => state.modal);
+  const [post, setPost] = useState<Partial<PostInterface>>(oldPost);
 
-  console.log(post);
+  const dispatch = useDispatch();
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    editPost({ ...oldPost, ...post }).then(() => window.location.reload());
+  };
 
   return (
-    <>
+    <form onSubmit={handleSubmit}>
       <Hero colorMode="dark" className="mb-6">
         Edit item
       </Hero>
-      <PostInputs />
+      <PostInputs post={post} setPost={setPost} />
       <div className="flex justify-end gap-6">
         <Button
           type="button"
@@ -24,8 +33,10 @@ export function EditPost() {
         >
           Cancel
         </Button>
-        <Button className="w-32 bg-defaultGreen capitalize text-zinc-950">Save</Button>
+        <Button className="w-32 bg-defaultGreen capitalize" type="submit">
+          Save
+        </Button>
       </div>
-    </>
+    </form>
   );
 }

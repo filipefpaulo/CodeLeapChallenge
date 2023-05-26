@@ -1,25 +1,32 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import { PostInterface } from '../../interfaces/post.interface';
+
 interface ModalState {
   modalState: 'idle' | 'delete' | 'edit';
+  post: Partial<PostInterface>;
 }
 
 const initialState: ModalState = {
   modalState: 'idle',
+  post: {},
 };
 
 export const modalSlice = createSlice({
   name: 'modal',
   initialState,
   reducers: {
-    openDeleteModal: (state) => {
+    openDeleteModal: (state, actions) => {
       state.modalState = 'delete';
+      state.post = { ...state.post, ...actions.payload.post };
     },
-    openEditModal: (state) => {
+    openEditModal: (state, actions) => {
       state.modalState = 'edit';
+      state.post = { ...state.post, ...actions.payload.post };
     },
     closeModal: (state) => {
       state.modalState = 'idle';
+      state.post = {};
     },
   },
 });
