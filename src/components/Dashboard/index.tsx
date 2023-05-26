@@ -1,16 +1,13 @@
-import { useState } from 'react';
-
 import { useDispatch, useSelector } from '../../hooks/useRedux';
 import { fetchPosts } from '../../redux/features/posts.slice';
 import { Button } from '../Button';
 import { FormPost } from './FormPost';
 import { Header } from './Header';
-import { DeletePost, EditPost } from './Modals';
+import { Modals } from './Modals';
 import { PostCard } from './PostCard';
 
 export function Dashboard() {
-  const [showModal, setShowModal] = useState<'idle' | 'delete' | 'edit'>('idle');
-
+  const { modalState } = useSelector((state) => state.modal);
   const { posts } = useSelector((state) => state.posts);
   const dispatch = useDispatch();
 
@@ -20,7 +17,7 @@ export function Dashboard() {
       <div className="flex flex-col px-6">
         <FormPost />
         {posts?.map((post) => (
-          <PostCard key={post.id} post={post} setShowModal={setShowModal} />
+          <PostCard key={post.id} post={post} />
         ))}
         <Button
           type="button"
@@ -29,8 +26,7 @@ export function Dashboard() {
         >
           Load more posts
         </Button>
-        {showModal === 'edit' && <EditPost setShowModal={setShowModal} />}
-        {showModal === 'delete' && <DeletePost />}
+        {modalState !== 'idle' && <Modals />}
       </div>
     </div>
   );

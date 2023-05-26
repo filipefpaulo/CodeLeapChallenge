@@ -1,10 +1,12 @@
-import { useSelector } from '../../../hooks/useRedux';
+import { useDispatch, useSelector } from '../../../hooks/useRedux';
+import { openDeleteModal, openEditModal } from '../../../redux/features/modal.slice';
 import { Hero } from '../../Hero';
 import Pen from '../../icons/pen.svg';
 import Trash from '../../icons/trash.svg';
 import { PostCardProps } from '.';
 
-export function PostHeader({ post, setShowModal }: PostCardProps) {
+export function PostHeader({ post }: PostCardProps) {
+  const dispatch = useDispatch();
   const { username } = useSelector((state) => state.username);
 
   return (
@@ -14,10 +16,10 @@ export function PostHeader({ post, setShowModal }: PostCardProps) {
       </Hero>
       {post.username === username && (
         <div className="ml-6 flex gap-8">
-          <button onClick={() => setShowModal('delete')}>
+          <button onClick={() => dispatch(openDeleteModal())}>
             <img src={Trash} alt="Trash symbol to delete the post" />
           </button>
-          <button onClick={() => setShowModal('edit')}>
+          <button onClick={() => dispatch(openEditModal())}>
             <img src={Pen} alt="Pen symbol to edit the post" />
           </button>
         </div>

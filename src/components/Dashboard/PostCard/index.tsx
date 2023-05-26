@@ -5,13 +5,12 @@ import { PostHeader } from './PostHeader';
 
 export interface PostCardProps {
   post: PostInterface;
-  setShowModal: (value: 'idle' | 'delete' | 'edit') => void;
 }
 
-export function PostCard({ post, setShowModal }: PostCardProps) {
+export function PostCard({ post }: PostCardProps) {
   return (
     <Box className="mt-6 p-[0px]">
-      <PostHeader post={post} setShowModal={setShowModal} />
+      <PostHeader post={post} />
       <div className="p-6 text-lg">
         <div className="flex justify-between text-zinc-500">
           <p className="mb-4  font-bold">@{post.username}</p>
