@@ -12,11 +12,11 @@ export function Home() {
   if (!username) return <Navigate to="/" />;
 
   useEffect(() => {
-    dispatch(fetchPosts());
+    dispatch(fetchPosts(0));
   }, [dispatch]);
 
   return (
-    <div className="max-w-[800px] m-auto bg-white h-full">
+    <div className="m-auto h-full max-w-[800px] bg-white">
       <Dashboard />
     </div>
   );

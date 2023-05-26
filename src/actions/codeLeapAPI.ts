@@ -17,3 +17,10 @@ export async function getPosts(offset = 0) {
     .then((response) => response.data)
     .catch((error) => error);
 }
+
+export async function editPost({ id, title, username, content }: Partial<PostInterface>) {
+  return codeLeapAPI
+    .put(`${id}`, { title, username, content })
+    .then((response) => response.data)
+    .catch((error) => error);
+}
