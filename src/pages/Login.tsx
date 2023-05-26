@@ -2,6 +2,7 @@ import { Navigate } from 'react-router-dom';
 
 import { Box } from '../components/Box';
 import { FormLogin } from '../components/FormLogin';
+import { Hero } from '../components/Hero';
 import { useSelector } from '../hooks/useRedux';
 
 export function Login() {
@@ -9,9 +10,11 @@ export function Login() {
   if (username) return <Navigate to="/" />;
 
   return (
-    <div className="flex items-center justify-center h-screen bg-zinc-300">
+    <div className="flex h-screen items-center justify-center bg-zinc-300">
       <Box className="w-[500px]">
-        <h1 className="text-[22px] font-bold mb-6">Welcome to CodeLeap network!</h1>
+        <Hero colorMode="dark" className="mb-6">
+          Welcome to CodeLeap network!
+        </Hero>
         <FormLogin />
       </Box>
     </div>

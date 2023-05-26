@@ -5,6 +5,7 @@ import { createPost } from '../../actions/codeLeapAPI';
 import { useSelector } from '../../hooks/useRedux';
 import { Box } from '../Box';
 import { Button } from '../Button';
+import { Hero } from '../Hero';
 import { Input } from '../Input';
 
 export function FormPost() {
@@ -24,7 +25,9 @@ export function FormPost() {
   return (
     <Box className="mt-6">
       <form className="flex flex-col" onSubmit={handleSubmit}>
-        <p className="text-[22px] font-bold mb-6">{"What's on your mind?"}</p>
+        <Hero colorMode="dark" className="mb-6">
+          {"What's on your mind?"}
+        </Hero>
         <Input
           type="text"
           labelName="Title"
