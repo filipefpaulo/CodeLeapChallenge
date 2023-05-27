@@ -19,8 +19,8 @@ export function FormPost() {
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
     if (hasUsername) {
-      createPost({ ...post, username }).then(() => window.location.reload());
-    } else navigate('/');
+      createPost({ ...post, username }).then(() => navigate(0));
+    }
   };
 
   return (

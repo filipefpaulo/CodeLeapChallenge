@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 import { deletePost } from '../../../actions/codeLeapAPI';
 import { useDispatch, useSelector } from '../../../hooks/useRedux';
 import { closeModal } from '../../../redux/features/modal.slice';
@@ -8,8 +10,10 @@ export function DeletePost() {
   const dispatch = useDispatch();
   const { post } = useSelector((state) => state.modal);
 
+  const navigate = useNavigate();
+
   const handleDelete = async () => {
-    deletePost(post.id as number).then(() => window.location.reload());
+    deletePost(post.id as number).then(() => navigate(0));
   };
   return (
     <>

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { editPost } from '../../../actions/codeLeapAPI';
 import { useDispatch, useSelector } from '../../../hooks/useRedux';
@@ -11,12 +12,12 @@ import { PostInputs } from '../../Input/PostInputs';
 export function EditPost() {
   const { post: oldPost } = useSelector((state) => state.modal);
   const [post, setPost] = useState<Partial<PostInterface>>(oldPost);
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    editPost({ ...oldPost, ...post }).then(() => window.location.reload());
+    editPost(post).then(() => navigate(0));
   };
 
   return (

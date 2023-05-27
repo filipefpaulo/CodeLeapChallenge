@@ -9,8 +9,6 @@ export function PostHeader({ post }: PostCardProps) {
   const dispatch = useDispatch();
   const { username } = useSelector((state) => state.username);
 
-  console.log(post);
-
   return (
     <div className="flex justify-between rounded-t-xl bg-defaultBlue p-6 text-[22px] font-bold text-zinc-50">
       <Hero colorMode="light" className="truncate">
