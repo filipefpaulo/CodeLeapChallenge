@@ -18,11 +18,11 @@ export const modalSlice = createSlice({
   reducers: {
     openDeleteModal: (state, actions) => {
       state.modalState = 'delete';
-      state.post = { ...state.post, ...actions.payload.post };
+      state.post = { ...state.post, ...actions.payload };
     },
     openEditModal: (state, actions) => {
       state.modalState = 'edit';
-      state.post = { ...state.post, ...actions.payload.post };
+      state.post = { ...state.post, ...actions.payload };
     },
     closeModal: (state) => {
       state.modalState = 'idle';
