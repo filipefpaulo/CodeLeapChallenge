@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { resetPosts } from '../redux/features/posts.slice';
 import { setUsername } from '../redux/features/username.slice';
 import { useDispatch } from './useRedux';
 
@@ -13,6 +14,7 @@ export function useLogin() {
     e.preventDefault();
     localStorage.setItem('username', user);
     dispatch(setUsername(user));
+    dispatch(resetPosts());
     navigate('/');
   };
 
