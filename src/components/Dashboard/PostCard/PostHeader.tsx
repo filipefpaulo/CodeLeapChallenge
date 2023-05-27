@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from '../../../hooks/useRedux';
+import Pen from '../../../icons/pen.svg';
+import Trash from '../../../icons/trash.svg';
 import { openDeleteModal, openEditModal } from '../../../redux/features/modal.slice';
 import { Hero } from '../../Hero';
-import Pen from '../../icons/pen.svg';
-import Trash from '../../icons/trash.svg';
 import { PostCardProps } from '.';
 
 export function PostHeader({ post }: PostCardProps) {
