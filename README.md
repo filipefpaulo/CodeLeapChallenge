@@ -35,13 +35,13 @@ To set up the development environment locally, follow the steps below:
 1. Clone this repository on your machine:
 
 ```bash
-git clone https://github.com/your-username/repository-name.git
+git clone git@github.com:filipefpaulo/CodeLeapChallenge.git
 ```
 
 2. Navigate to the project directory:
 
 ```bash
-cd repository-name
+cd CodeLeapChallenge
 ```
 
 3. Install the necessary dependencies:
